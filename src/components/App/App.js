@@ -4,6 +4,7 @@ import Hero from '../Hero/Hero';
 import Features from '../Features/Features';
 import Countries from '../Countries/Countries';
 import Pricing from '../Pricing/Pricing';
+import Steps from '../Steps/Steps';
 import Calculator from '../Calculator/Calculator';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Countries />
       <Calculator />
       <Pricing />
+      <Steps />
     </>
   );
 }
