@@ -65,13 +65,13 @@
 
 @media (max-width: 1199px) {
   .countries__inner {
-    padding: 24px 12px;
+    padding: 40px 12px;
   }
 }
 
 @media (max-width: 400px) {
   .countries__inner {
-    padding: 24px 16px;
+    padding: 40px 16px;
   }
 
   .countries__list {

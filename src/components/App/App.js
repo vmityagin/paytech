@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Hero from '../Hero/Hero';
 import Features from '../Features/Features';
 import Countries from '../Countries/Countries';
+import Calculator from '../Calculator/Calculator';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <Features />
       <Countries />
+      <Calculator />
     </>
   );
 }
