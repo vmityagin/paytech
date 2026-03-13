@@ -9,6 +9,7 @@ import Calculator from '../Calculator/Calculator';
 import Cta from '../Cta/Cta';
 import About from '../About/About';
 import Benefits from '../Benefits/Benefits';
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Cta />
       <About />
       <Benefits />
+      <Footer />
     </>
   );
 }
