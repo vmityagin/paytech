@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Header/Header';
 import Hero from '../Hero/Hero';
 import Features from '../Features/Features';
+import Countries from '../Countries/Countries';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <Hero />
       <Features />
+      <Countries />
     </>
   );
 }
