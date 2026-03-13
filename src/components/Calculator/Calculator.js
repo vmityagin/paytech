@@ -50,8 +50,8 @@ function Calculator() {
 
               <div className="calculator__field">
                 <div className="calculator__field-text">
-                  <span className="calculator__field-label">Сумма перевода, ¥</span>
-                  <span className="calculator__field-value">10 000</span>
+                  <label className="calculator__field-label" htmlFor="calc-amount">Сумма перевода, ¥</label>
+                  <input className="calculator__field-input" id="calc-amount" type="text" defaultValue="10 000" />
                 </div>
               </div>
             </div>
@@ -66,9 +66,7 @@ function Calculator() {
                   alt=""
                 />
                 <div className="calculator__field-text">
-                  <span className="calculator__field-value calculator__field-value_placeholder">
-                    Номер телефона
-                  </span>
+                  <input className="calculator__field-input calculator__field-input_placeholder" id="calc-phone" type="tel" placeholder="Номер телефона" />
                 </div>
               </div>
             </div>
