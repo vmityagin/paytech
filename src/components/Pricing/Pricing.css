@@ -1,0 +1,138 @@
+.pricing {
+  width: 100%;
+}
+
+.pricing__inner {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 64px 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.pricing__info {
+  flex: 0 0 42%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricing__title {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.15;
+  color: #0D0D0C;
+}
+
+.pricing__subtitle {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6C6660;
+}
+
+.pricing__list {
+  flex: 1;
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pricing__item {
+  background: #ffffff;
+  border: 1px solid rgba(13, 13, 12, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pricing__item_type_summary {
+  background: #F2F1F0;
+  border: none;
+}
+
+.pricing__item-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.pricing__item-title {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.3;
+  color: #0D0D0C;
+}
+
+.pricing__item-text {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #0D0D0C;
+}
+
+.pricing__item-note {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #9F9993;
+}
+
+@media (max-width: 1199px) {
+  .pricing__inner {
+    padding: 48px 12px;
+    gap: 24px;
+  }
+
+  .pricing__info {
+    flex: 0 0 40%;
+  }
+
+  .pricing__title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing__inner {
+    flex-direction: column;
+    padding: 40px 16px;
+    gap: 24px;
+  }
+
+  .pricing__info {
+    flex: none;
+    width: 100%;
+  }
+
+  .pricing__title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .pricing__subtitle {
+    text-align: center;
+  }
+}
