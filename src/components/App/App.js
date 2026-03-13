@@ -6,6 +6,7 @@ import Countries from '../Countries/Countries';
 import Pricing from '../Pricing/Pricing';
 import Steps from '../Steps/Steps';
 import Calculator from '../Calculator/Calculator';
+import Cta from '../Cta/Cta';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Calculator />
       <Pricing />
       <Steps />
+      <Cta />
     </>
   );
 }
