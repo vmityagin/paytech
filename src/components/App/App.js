@@ -8,6 +8,7 @@ import Steps from '../Steps/Steps';
 import Calculator from '../Calculator/Calculator';
 import Cta from '../Cta/Cta';
 import About from '../About/About';
+import Benefits from '../Benefits/Benefits';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Steps />
       <Cta />
       <About />
+      <Benefits />
     </>
   );
 }
