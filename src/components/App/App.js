@@ -7,6 +7,7 @@ import Pricing from '../Pricing/Pricing';
 import Steps from '../Steps/Steps';
 import Calculator from '../Calculator/Calculator';
 import Cta from '../Cta/Cta';
+import About from '../About/About';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Pricing />
       <Steps />
       <Cta />
+      <About />
     </>
   );
 }
