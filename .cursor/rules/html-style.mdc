@@ -1,0 +1,74 @@
+---
+description: Яндекс.Практикум HTML code style standards
+globs: ["**/*.html", "**/*.htm"]
+alwaysApply: true
+---
+
+# HTML Code Style — Яндекс.Практикум
+
+## Indentation & Encoding
+- Use 2 spaces for indentation. Never use tabs or mixed indentation.
+- Always declare `<meta charset="utf-8">` in HTML documents.
+- Save all files in UTF-8 encoding.
+
+## Case
+- Write ALL HTML code in lowercase: element names, attributes, attribute values (except text content in alt/title).
+- No uppercase tags like `<DIV>` or `<A HREF>` — this is considered old school.
+
+## Doctype & Validation
+- Always start HTML documents with `<!DOCTYPE html>` (HTML5).
+- Do not use XHTML syntax. Write valid HTML5.
+- Validate HTML with W3C validator. Fix all structural and syntax errors.
+
+## Semantics
+- Use semantic elements for their purpose: `<h1>`–`<h6>` for headings, `<p>` for paragraphs, `<a>` for links, `<button>` for buttons.
+- Never use `<div>` with onClick where a `<a>` or `<button>` would be correct.
+
+## Multimedia
+- Always add meaningful `alt` attribute to every `<img>`. 
+- For decorative images use empty alt: `alt=""`.
+- Add transcripts or subtitles to video/audio where possible.
+
+## Separation of Concerns
+- HTML files contain only markup. No inline styles (`style=""`). No inline JavaScript handlers.
+- All styling goes to CSS files. All behavior goes to JS files.
+
+## Quotes
+- Use double quotes `""` for all HTML attribute values. Never single quotes.
+```html
+  <!-- Wrong -->
+  <a class='btn'>Click</a>
+  <!-- Correct -->
+  <a class="btn">Click</a>
+```
+
+## Self-Closing Tags
+- Do NOT self-close void elements. Write `<br>`, `<img>`, `<input>`, not `<br />` or `<img />`.
+
+## Line Formatting
+- Write each block, list, and table element on a new line.
+- Indent each child element relative to its parent.
+- Break long lines (long attribute lists). Continuation lines must be indented at least 2 spaces from the opening tag.
+```html
+  
+    href="https://yandex.ru"
+    class="my-link"
+    target="_blank"
+  >Link text</a>
+```
+
+## Entities
+- When using UTF-8, do NOT use HTML entities like `&mdash;`, `&rdquo;`, `&#x263a;`.
+- Exception: always escape `<` as `&lt;`, `>` as `&gt;`, `&` as `&amp;`, and use `&nbsp;` for non-breaking spaces.
+
+## Resource Loading
+- Use `type` attribute on `<script>` and `<link>` is NOT needed in HTML5. Omit it.
+- Only load CSS and JS files that are actually used on the page. Remove unused `<link>` and `<script>` tags.
+- Always use HTTPS for all external resources (scripts, styles, fonts, images).
+
+## Comments & TODO
+- Comment logical sections to explain structure. Mark open questions with `TODO(name@mail.com): description`.
+
+## Trailing Whitespace
+- No trailing spaces at end of lines.
+- File must end with a single newline.

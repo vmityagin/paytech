@@ -1,0 +1,203 @@
+/* ============================
+   Защита от горизонтальной прокрутки
+   ============================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ============================
+   Header — блок
+   ============================ */
+
+.header {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(13, 13, 12, .08);
+}
+
+.header__inner {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ============================
+   Logo block
+   ============================ */
+
+.header__logo-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.header__logo-link {
+  display: block;
+  flex-shrink: 0;
+}
+
+.header__logo-img {
+  display: block;
+  width: 103.48px;
+  height: 36px;
+  max-width: 100%;
+}
+
+.header__tagline {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: .14px; /* 1% */
+  color: #6C6660;
+  white-space: nowrap;
+}
+
+/* ============================
+   Divider
+   ============================ */
+
+.header__divider {
+  width: 0;
+  height: 24px;
+  border-left: 1px solid rgba(13, 13, 12, .16);
+  flex-shrink: 0;
+}
+
+/* ============================
+   Contacts (desktop only)
+   ============================ */
+
+.header__contacts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.header__email {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: .28px; /* 2% */
+  color: #0A7032;
+  text-decoration: none;
+}
+
+.header__phone-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.header__phone {
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: .28px;
+  color: #0A7032;
+  text-decoration: none;
+}
+
+.header__phone-hours {
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: .14px;
+  color: #9F9993;
+}
+
+/* ============================
+   Buttons
+   ============================ */
+
+.header__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: .28px;
+  color: #0D0D0C;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.header__btn_grade_primary {
+  background-color: #17D360;
+  border-radius: 12px;
+}
+
+.header__btn_grade_secondary {
+  background-color: #F2F1F0;
+  border-radius: 8px;
+  display: none; /* скрыта на desktop */
+}
+
+/* ============================
+   Tablet: 768px – 1199px
+   ============================ */
+
+@media (max-width: 1199px) {
+  .header__inner {
+    padding: 12px;
+    max-width: 100%;
+  }
+
+  /* Скрываем слоган, разделитель слева, блок контактов */
+  .header__tagline {
+    display: none;
+  }
+
+  .header__logo-block .header__divider {
+    display: none;
+  }
+
+  .header__contacts {
+    display: none;
+  }
+
+  /* Показываем secondary-кнопку «Контакты» */
+  .header__btn_grade_secondary {
+    display: inline-flex;
+  }
+
+  /* Уменьшаем логотип */
+  .header__logo-img {
+    width: 91.98px;
+    height: 32px;
+  }
+}
+
+/* ============================
+   Mobile: < 768px
+   ============================ */
+
+@media (max-width: 767px) {
+  .header__inner {
+    padding: 12px;
+    max-width: 100%;
+  }
+}

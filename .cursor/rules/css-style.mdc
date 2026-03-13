@@ -1,0 +1,99 @@
+﻿---
+description: Яндекс.Практикум CSS code style standards
+globs: ["**/*.css", "**/*.scss", "**/*.sass"]
+alwaysApply: true
+---
+
+# CSS Code Style — Яндекс.Практикум
+
+## Validation
+- Write valid CSS. Use W3C CSS validator to check. Fix all errors.
+
+## Selectors & Naming
+- Use class selectors for ALL styling — including typography and layout.
+- Never style bare HTML element names: `h1 {}`, `p {}`, `div {}`, `span {}`, `a {}`, `ul {}` are FORBIDDEN.
+  Exception: `html {}` and `body {}` are allowed only for global resets (font-size baseline, font-smoothing, box-sizing). Everything else uses classes.
+- Never style by ID (`#id-name {}`). Use classes.
+- Use BEM methodology for class naming.
+- Names must reflect purpose, not appearance. `.gallery {}` is correct. `.button-green {}` or `.abyrvalg {}` are wrong.
+
+## Values
+- Do NOT add units after zero values: `margin: 0;` not `margin: 0px;`.
+  Exception: when units are critical for cross-browser compatibility.
+- ALWAYS write leading zero for decimals between -1 and 1: `font-size: 0.8em;` not `font-size: .8em;`.
+- Shorten hex color codes when possible: `#ebc` not `#eebbcc;`.
+
+## Formatting Rules
+- One space between property and value, NO space before colon:
+```css
+  /* Wrong */
+  font-weight:bold;
+  /* Correct */
+  font-weight: bold;
+```
+- Opening curly brace `{` on the SAME line as the selector, with one space before it:
+```css
+  /* Wrong */
+  .video{
+  /* Correct */
+  .video {
+```
+- Each declaration on its own separate line.
+- Semicolon after EVERY declaration, including the last one.
+- Empty line between separate rules (double newline).
+
+## Indentation
+- Indent block content inside rules (nested rules, declarations) with 2 spaces.
+```css
+  @media screen {
+    html {
+      background: #fff;
+    }
+  }
+```
+
+## Quotes
+- Use single quotes `''` in CSS for attribute values and property values.
+- For external URLs — no quotes: `url(https://example.com/font.woff2)`.
+- For local relative paths — single quotes required: `url('./vendor/normalize.css')`.
+- Exception: `@charset` rule requires double quotes.
+```css
+  /* Wrong */
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+  font-family: "open sans", arial;
+  /* Correct — external URL, no quotes */
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  font-family: 'open sans', arial;
+  /* Correct — local path, single quotes */
+  @import url('./vendor/normalize.css');
+  @import url('./blocks/header/header.css');
+```
+
+## Organization
+- Split CSS into thematic sections with comment headers.
+- Separate sections with empty lines.
+```css
+  /* Header */
+
+  .header {}
+
+  /* Gallery */
+
+  .gallery {}
+
+  /* Footer */
+
+  .footer {}
+```
+
+## No Hacks
+- Do NOT use browser detection or CSS hacks (user-agent sniffing, CSS filters/tricks for specific browsers).
+- Solve cross-browser issues with standard methods. Hacks make code unpredictable and unmaintainable.
+
+## Working with Existing Code
+- When editing existing code, preserve the original formatting style of the file.
+- Your additions must not stand out visually from the surrounding code.
+
+## Trailing Whitespace
+- No trailing spaces at end of lines.
+- File must end with a single newline.

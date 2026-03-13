@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Edit",
+      "Write",
+      "mcp__figma-developer-mcp__get_figma_data"
+    ]
+  }
+}
