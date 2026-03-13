@@ -1,1 +1,6 @@
 @import url('./vendor/normalize.css');
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #d9f5e7 0%, #edfaf4 40%, #f8fffe 80%, #ffffff 100%);
+}

@@ -160,7 +160,7 @@
    Tablet: 768px – 1199px
    ============================ */
 
-@media (max-width: 1199px) {
+@media (max-width: 999px) {
   .header__inner {
     padding: 12px;
     max-width: 100%;
