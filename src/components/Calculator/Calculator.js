@@ -1,11 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Calculator.css';
 import chinaFlag from '../../images/china 2.svg';
 import russiaFlag from '../../images/russia.svg';
 import infoIcon from '../../images/features__item-hint.svg';
+import brazilFlag from '../../images/brazil.svg';
+import kazakhstanFlag from '../../images/kazakhstan.svg';
+import armeniaFlag from '../../images/armenia.svg';
+import uzbekistanFlag from '../../images/uzbekistan.svg';
+import tajikistanFlag from '../../images/tajikistan.svg';
+import belarusFlag from '../../images/belarus.svg';
+import kyrgyzstanFlag from '../../images/kyrgyzstan.svg';
+
+const COUNTRIES = [
+  { flag: chinaFlag, name: 'Китай' },
+  { flag: brazilFlag, name: 'Бразилия' },
+  { flag: kazakhstanFlag, name: 'Казахстан' },
+  { flag: armeniaFlag, name: 'Армения' },
+  { flag: uzbekistanFlag, name: 'Узбекистан' },
+  { flag: tajikistanFlag, name: 'Таджикистан' },
+  { flag: belarusFlag, name: 'Беларусь' },
+  { flag: kyrgyzstanFlag, name: 'Кыргызстан' },
+];
 
 function Calculator() {
   const [activeTab, setActiveTab] = useState('pay');
+  const [countryPickerOpen, setCountryPickerOpen] = useState(false);
+
+  useEffect(() => {
+    if (countryPickerOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [countryPickerOpen]);
+
+  function openCountryPicker() {
+    setCountryPickerOpen(true);
+  }
+
+  function closeCountryPicker() {
+    setCountryPickerOpen(false);
+  }
 
   return (
     <section className="calculator">
@@ -45,7 +83,10 @@ function Calculator() {
             <div className="calculator__fieldset">
               <p className="calculator__fieldset-label">Детали перевода</p>
 
-              <div className="calculator__field calculator__field_type_select">
+              <div
+                className="calculator__field calculator__field_type_select"
+                onClick={openCountryPicker}
+              >
                 <img
                   className="calculator__field-flag"
                   src={chinaFlag}
@@ -134,6 +175,44 @@ function Calculator() {
 
         </div>
       </div>
+
+      {/* Backdrop */}
+      {countryPickerOpen && (
+        <div
+          className="calculator__backdrop"
+          onClick={closeCountryPicker}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Country picker panel */}
+      {countryPickerOpen && (
+        <div className="calculator__picker" role="dialog" aria-modal="true">
+          <div className="calculator__picker-header">
+            <h3 className="calculator__picker-title">
+              {activeTab === 'pay' ? 'Куда перевести деньги' : 'Откуда перевести деньги'}
+            </h3>
+            <button
+              className="calculator__picker-close"
+              type="button"
+              onClick={closeCountryPicker}
+              aria-label="Закрыть"
+            >
+              ×
+            </button>
+          </div>
+          <ul className="calculator__picker-list">
+            {COUNTRIES.map(({ flag, name }) => (
+              <li key={name} className="calculator__picker-item">
+                <img className="calculator__picker-flag" src={flag} alt="" />
+                <span className="calculator__picker-name">{name}</span>
+                <span className="calculator__picker-arrow" aria-hidden="true" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
     </section>
   );
 }
