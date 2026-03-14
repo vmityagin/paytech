@@ -12,14 +12,14 @@ import belarusFlag from '../../images/belarus.svg';
 import kyrgyzstanFlag from '../../images/kyrgyzstan.svg';
 
 const COUNTRIES = [
-  { flag: chinaFlag, name: 'Китай' },
-  { flag: brazilFlag, name: 'Бразилия' },
-  { flag: kazakhstanFlag, name: 'Казахстан' },
-  { flag: armeniaFlag, name: 'Армения' },
-  { flag: uzbekistanFlag, name: 'Узбекистан' },
-  { flag: tajikistanFlag, name: 'Таджикистан' },
-  { flag: belarusFlag, name: 'Беларусь' },
-  { flag: kyrgyzstanFlag, name: 'Кыргызстан' },
+  { flag: chinaFlag,      name: 'Китай',       currency: '¥'   },
+  { flag: brazilFlag,     name: 'Бразилия',    currency: 'R$'  },
+  { flag: kazakhstanFlag, name: 'Казахстан',   currency: '₸'   },
+  { flag: armeniaFlag,    name: 'Армения',     currency: '֏'   },
+  { flag: uzbekistanFlag, name: 'Узбекистан',  currency: 'сум' },
+  { flag: tajikistanFlag, name: 'Таджикистан', currency: 'смн' },
+  { flag: belarusFlag,    name: 'Беларусь',    currency: 'Br'  },
+  { flag: kyrgyzstanFlag, name: 'Кыргызстан',  currency: 'с'   },
 ];
 
 function Calculator() {
@@ -107,7 +107,7 @@ function Calculator() {
 
               <div className="calculator__field">
                 <div className="calculator__field-text">
-                  <label className="calculator__field-label" htmlFor="calc-amount">Сумма перевода, ¥</label>
+                  <label className="calculator__field-label" htmlFor="calc-amount">Сумма перевода, {selectedCountry.currency}</label>
                   <input className="calculator__field-input" id="calc-amount" type="text" defaultValue="10 000" />
                 </div>
               </div>
@@ -141,7 +141,7 @@ function Calculator() {
             <ul className="calculator__panel-rows">
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">Платёж в валюте</span>
-                <span className="calculator__panel-row-value">10 000 ¥</span>
+                <span className="calculator__panel-row-value">10 000 {selectedCountry.currency}</span>
               </li>
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">
