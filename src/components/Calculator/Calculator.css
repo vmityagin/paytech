@@ -339,6 +339,12 @@
   cursor: pointer;
   text-align: center;
   box-sizing: border-box;
+  transition: opacity 0.2s;
+}
+
+.calculator__submit:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 @media (max-width: 900px) {

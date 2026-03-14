@@ -127,6 +127,17 @@ function Calculator() {
     setCountryPickerOpen(false);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    let valid = true;
+    if (!amountRaw) { setAmountError(true); valid = false; }
+    if (!phoneRaw) {
+      setPhoneError(!phoneDisplay || phoneDisplay === '+7 (' ? 'empty' : 'incomplete');
+      valid = false;
+    }
+    if (valid) window.location.reload();
+  }
+
   const CBR_RATE = parseFloat(process.env.REACT_APP_CBR_RATE);
   const BANK_MARKUP = parseFloat(process.env.REACT_APP_BANK_MARKUP);
   const COMMISSION_RATE = parseFloat(process.env.REACT_APP_COMMISSION_RATE);
@@ -144,7 +155,7 @@ function Calculator() {
           Рассчитайте стоимость<br />международного перевода
         </h2>
 
-        <div className="calculator__content">
+        <form className="calculator__content" onSubmit={handleSubmit}>
 
           <div className="calculator__form">
 
@@ -292,12 +303,12 @@ function Calculator() {
               <span className="calculator__panel-total-value">от {formatAmount(String(total))} ₽</span>
             </div>
 
-            <button className="calculator__submit" type="button">
+            <button className="calculator__submit" type="submit" disabled={!amountRaw || !phoneRaw}>
               Оставить заявку
             </button>
           </div>
 
-        </div>
+        </form>
       </div>
 
       {/* Backdrop */}

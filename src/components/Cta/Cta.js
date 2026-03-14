@@ -35,6 +35,11 @@ function Cta() {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    window.location.reload();
+  }
+
   function handlePhoneChange(e) {
     setPhoneError('');
     const allDigits = e.target.value.replace(/\D/g, '');
@@ -70,7 +75,7 @@ function Cta() {
           <p className="cta__subtitle">
             Подберём удобный и надёжный маршрут перевода
           </p>
-          <div className="cta__form">
+          <form className="cta__form" onSubmit={handleSubmit}>
             <input
               className={`cta__input${phoneError ? ' cta__input_error' : ''}`}
               type="tel"
@@ -89,14 +94,14 @@ function Cta() {
             {phoneError !== 'empty' && phoneError !== 'incomplete' && phoneError && (
               <p className="cta__error">{phoneError}</p>
             )}
-            <button className="cta__btn" type="button">
+            <button className="cta__btn" type="submit" disabled={!phoneRaw}>
               Оставить заявку
             </button>
             <p className="cta__disclaimer">
               При вводе номера телефона вы соглашаетесь{' '}
               <a className="cta__disclaimer-link" href="#">с условиями</a>
             </p>
-          </div>
+          </form>
         </div>
 
         <div className="cta__phone">

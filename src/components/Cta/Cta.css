@@ -101,6 +101,12 @@
   border-radius: 12px;
   cursor: pointer;
   white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.cta__btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .cta__disclaimer {
