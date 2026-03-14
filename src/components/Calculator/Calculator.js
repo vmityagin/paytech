@@ -25,6 +25,7 @@ const COUNTRIES = [
 function Calculator() {
   const [activeTab, setActiveTab] = useState('pay');
   const [countryPickerOpen, setCountryPickerOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
 
   useEffect(() => {
     if (countryPickerOpen) {
@@ -42,6 +43,11 @@ function Calculator() {
   }
 
   function closeCountryPicker() {
+    setCountryPickerOpen(false);
+  }
+
+  function selectCountry(country) {
+    setSelectedCountry(country);
     setCountryPickerOpen(false);
   }
 
@@ -89,12 +95,12 @@ function Calculator() {
               >
                 <img
                   className="calculator__field-flag"
-                  src={chinaFlag}
+                  src={selectedCountry.flag}
                   alt=""
                 />
                 <div className="calculator__field-text">
                   <span className="calculator__field-label">{activeTab === 'pay' ? 'Куда' : 'Откуда'}</span>
-                  <span className="calculator__field-value">Китай</span>
+                  <span className="calculator__field-value">{selectedCountry.name}</span>
                 </div>
                 <span className="calculator__field-chevron" aria-hidden="true"></span>
               </div>
@@ -202,10 +208,14 @@ function Calculator() {
             </button>
           </div>
           <ul className="calculator__picker-list">
-            {COUNTRIES.map(({ flag, name }) => (
-              <li key={name} className="calculator__picker-item">
-                <img className="calculator__picker-flag" src={flag} alt="" />
-                <span className="calculator__picker-name">{name}</span>
+            {COUNTRIES.map((country) => (
+              <li
+                key={country.name}
+                className="calculator__picker-item"
+                onClick={() => selectCountry(country)}
+              >
+                <img className="calculator__picker-flag" src={country.flag} alt="" />
+                <span className="calculator__picker-name">{country.name}</span>
                 <span className="calculator__picker-arrow" aria-hidden="true" />
               </li>
             ))}
