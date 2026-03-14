@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import logoPath from '../../images/logo.svg';
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="header">
       <div className="header__inner">
@@ -41,11 +43,34 @@ function Header() {
         </div>
 
         {/* Кнопка «Контакты» (только tablet и mobile) */}
-        <button className="header__btn header__btn_grade_secondary" type="button">
-          Контакты
+        <button
+          className="header__btn header__btn_grade_secondary"
+          type="button"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? 'Закрыть' : 'Контакты'}
         </button>
 
       </div>
+
+      {/* Мобильное меню */}
+      {menuOpen && (
+        <div className="header__menu">
+          <p className="header__menu-tagline">
+            Оператор международных банковских расчётов для бизнеса
+          </p>
+          <a href="mailto:help@pay-tech.ru" className="header__menu-email">
+            help@pay-tech.ru
+          </a>
+          <div className="header__menu-phone-block">
+            <a href="tel:+74955320546" className="header__menu-phone">
+              8 495 532 05 46
+            </a>
+            <span className="header__menu-hours">09:00 – 18:00 мск</span>
+          </div>
+        </div>
+      )}
+
     </header>
   );
 }

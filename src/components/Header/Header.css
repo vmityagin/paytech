@@ -14,6 +14,7 @@
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid rgba(13, 13, 12, .08);
+  position: relative;
 }
 
 .header__inner {
@@ -154,6 +155,84 @@
   background-color: #F2F1F0;
   border-radius: 8px;
   display: none; /* скрыта на desktop */
+}
+
+/* ============================
+   Mobile menu
+   ============================ */
+
+.header__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 12px 24px;
+  border-top: 1px solid rgba(13, 13, 12, 0.08);
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(13, 13, 12, 0.08);
+  border-radius: 0 0 24px 24px;
+}
+
+/* Скрываем меню на desktop, даже если оно отрендерено */
+@media (min-width: 1000px) {
+  .header__menu {
+    display: none;
+  }
+}
+
+.header__menu-tagline {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #6C6660;
+}
+
+.header__menu-email {
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: .28px; /* 2% */
+  color: #0A7032;
+  text-decoration: none;
+}
+
+.header__menu-email:hover {
+  text-decoration: underline;
+}
+
+.header__menu-phone-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header__menu-phone {
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: .4px; /* 2% */
+  color: #0A7032;
+  text-decoration: none;
+}
+
+.header__menu-phone:hover {
+  text-decoration: underline;
+}
+
+.header__menu-hours {
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #9F9993;
 }
 
 /* ============================
