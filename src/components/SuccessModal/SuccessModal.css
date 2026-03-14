@@ -67,3 +67,22 @@
   line-height: 1.4;
   color: #6C6660;
 }
+
+.success-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: #F2F1F0;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  color: #6C6660;
+  cursor: pointer;
+}

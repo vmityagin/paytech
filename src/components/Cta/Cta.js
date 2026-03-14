@@ -111,7 +111,7 @@ function Cta() {
               <p className="cta__error">{phoneError}</p>
             )}
             <button className="cta__btn" type="submit" disabled={!phoneRaw || isSubmitting}>
-              Оставить заявку
+              {isSubmitting ? <span className="calculator__spinner" /> : 'Оставить заявку'}
             </button>
             <p className="cta__disclaimer">
               При вводе номера телефона вы соглашаетесь{' '}

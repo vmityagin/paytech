@@ -91,7 +91,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
+  height: 42px;
+  min-width: 190px;
+  padding: 0 24px;
   background: #17D360;
   color: #0D0D0C;
   font-family: 'Inter Display', Inter, sans-serif;
@@ -103,6 +105,7 @@
   cursor: pointer;
   white-space: nowrap;
   transition: opacity 0.2s;
+  box-sizing: border-box;
 }
 
 .cta__btn:disabled {

@@ -18,6 +18,7 @@ function SuccessModal({ onClose }) {
           <p className="success-modal__title">Заявка отправлена</p>
           <p className="success-modal__subtitle">Скоро свяжемся с вами</p>
         </div>
+        <button className="success-modal__close" type="button" onClick={onClose} aria-label="Закрыть">×</button>
       </div>
     </>,
     document.body
