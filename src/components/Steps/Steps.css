@@ -98,7 +98,7 @@
 
 @media (max-width: 1199px) {
   .steps__inner {
-    padding: 48px 12px;
+    padding: 48px 0;
   }
 
   .steps__title {
@@ -109,6 +109,9 @@
     overflow-x: auto;
     scrollbar-width: none;
     flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 32px;
   }
 
   .steps__list::-webkit-scrollbar {
@@ -116,7 +119,7 @@
   }
 
   .steps__item {
-    flex: 0 0 200px;
+    flex: 0 0 240px;
   }
 }
 

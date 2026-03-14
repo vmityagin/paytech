@@ -6,7 +6,7 @@ import percentDiscountIcon from '../../images/percent_discount.png';
 import acuteIcon from '../../images/acute.png';
 import hintIcon from '../../images/features__item-hint.svg';
 import Tooltip from '../Tooltip/Tooltip';
-import TOOLTIPS from '../Tooltip/tooltips';
+import { TOOLTIPS } from '../../utils/constants';
 
 function Features() {
   return (

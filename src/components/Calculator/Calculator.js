@@ -1,28 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Calculator.css';
-import chinaFlag from '../../images/china 2.svg';
 import russiaFlag from '../../images/russia.svg';
 import infoIcon from '../../images/features__item-hint.svg';
 import Tooltip from '../Tooltip/Tooltip';
-import TOOLTIPS from '../Tooltip/tooltips';
-import brazilFlag from '../../images/brazil.svg';
-import kazakhstanFlag from '../../images/kazakhstan.svg';
-import armeniaFlag from '../../images/armenia.svg';
-import uzbekistanFlag from '../../images/uzbekistan.svg';
-import tajikistanFlag from '../../images/tajikistan.svg';
-import belarusFlag from '../../images/belarus.svg';
-import kyrgyzstanFlag from '../../images/kyrgyzstan.svg';
-
-const COUNTRIES = [
-  { flag: chinaFlag,      name: 'Китай',       currency: '¥'   },
-  { flag: brazilFlag,     name: 'Бразилия',    currency: 'R$'  },
-  { flag: kazakhstanFlag, name: 'Казахстан',   currency: '₸'   },
-  { flag: armeniaFlag,    name: 'Армения',     currency: '֏'   },
-  { flag: uzbekistanFlag, name: 'Узбекистан',  currency: 'сум' },
-  { flag: tajikistanFlag, name: 'Таджикистан', currency: 'смн' },
-  { flag: belarusFlag,    name: 'Беларусь',    currency: 'Br'  },
-  { flag: kyrgyzstanFlag, name: 'Кыргызстан',  currency: 'с'   },
-];
+import { COUNTRIES, TOOLTIPS, CBR_RATE, BANK_MARKUP, COMMISSION_RATE } from '../../utils/constants';
 
 function Calculator() {
   const [activeTab, setActiveTab] = useState('pay');
@@ -137,10 +118,6 @@ function Calculator() {
     }
     if (valid) window.location.reload();
   }
-
-  const CBR_RATE = parseFloat(process.env.REACT_APP_CBR_RATE);
-  const BANK_MARKUP = parseFloat(process.env.REACT_APP_BANK_MARKUP);
-  const COMMISSION_RATE = parseFloat(process.env.REACT_APP_COMMISSION_RATE);
 
   const amount = parseFloat(amountRaw) || 0;
   const paymentRub = Math.round(amount * CBR_RATE * BANK_MARKUP);
