@@ -5,6 +5,7 @@ import infoIcon from '../../images/features__item-hint.svg';
 import Tooltip from '../Tooltip/Tooltip';
 import { COUNTRIES, TOOLTIPS, CBR_RATE, BANK_MARKUP, COMMISSION_RATE } from '../../utils/constants';
 import { buildPayload, submitToSheets } from '../../utils/api';
+import SuccessModal from '../SuccessModal/SuccessModal';
 
 function Calculator() {
   const [activeTab, setActiveTab] = useState('pay');
@@ -16,6 +17,7 @@ function Calculator() {
   const [phoneRaw, setPhoneRaw] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (countryPickerOpen) {
@@ -134,6 +136,7 @@ function Calculator() {
       setAmountRaw('10000');
       setPhoneDisplay('');
       setPhoneRaw('');
+      setShowSuccess(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -348,6 +351,8 @@ function Calculator() {
           </ul>
         </div>
       )}
+
+      {showSuccess && <SuccessModal onClose={() => setShowSuccess(false)} />}
 
     </section>
   );

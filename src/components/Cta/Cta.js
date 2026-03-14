@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import './Cta.css';
 import phoneImg from '../../images/phone.png';
+import SuccessModal from '../SuccessModal/SuccessModal';
+import { buildPayload, submitToSheets } from '../../utils/api';
 
 function Cta() {
   const [phoneDisplay, setPhoneDisplay] = useState('');
   const [phoneRaw, setPhoneRaw] = useState('');
   const [phoneError, setPhoneError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   function formatPhoneDisplay(digits10) {
     let result = '+7 (';
@@ -35,9 +39,21 @@ function Cta() {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    window.location.reload();
+    if (!phoneRaw) {
+      setPhoneError(!phoneDisplay || phoneDisplay === '+7 (' ? 'empty' : 'incomplete');
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      await submitToSheets(buildPayload({ type: 'cta', phone: phoneRaw }));
+      setPhoneDisplay('');
+      setPhoneRaw('');
+      setShowSuccess(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function handlePhoneChange(e) {
@@ -94,7 +110,7 @@ function Cta() {
             {phoneError !== 'empty' && phoneError !== 'incomplete' && phoneError && (
               <p className="cta__error">{phoneError}</p>
             )}
-            <button className="cta__btn" type="submit" disabled={!phoneRaw}>
+            <button className="cta__btn" type="submit" disabled={!phoneRaw || isSubmitting}>
               Оставить заявку
             </button>
             <p className="cta__disclaimer">
@@ -113,6 +129,8 @@ function Cta() {
         </div>
 
       </div>
+      {showSuccess && <SuccessModal onClose={() => setShowSuccess(false)} />}
+
     </section>
   );
 }

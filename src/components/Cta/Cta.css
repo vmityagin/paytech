@@ -84,6 +84,7 @@
   font-size: 12px;
   line-height: 1.4;
   color: #FE0801;
+  text-align: left;
 }
 
 .cta__btn {
@@ -176,7 +177,6 @@
   }
 
   .cta__form {
-    align-items: center;
     width: 100%;
   }
 
