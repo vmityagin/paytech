@@ -27,6 +27,9 @@ function Calculator() {
   const [countryPickerOpen, setCountryPickerOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
   const [amountRaw, setAmountRaw] = useState('10000');
+  const [phoneDisplay, setPhoneDisplay] = useState('');
+  const [phoneRaw, setPhoneRaw] = useState('');
+  const [phoneError, setPhoneError] = useState('');
 
   useEffect(() => {
     if (countryPickerOpen) {
@@ -47,6 +50,58 @@ function Calculator() {
   function handleAmountChange(e) {
     const digits = e.target.value.replace(/\D/g, '');
     setAmountRaw(digits);
+  }
+
+  function formatPhoneDisplay(digits10) {
+    let result = '+7 (';
+    if (!digits10) return result;
+    result += digits10.slice(0, 3);
+    if (digits10.length > 3) result += ') ' + digits10.slice(3, 6);
+    if (digits10.length > 6) result += '-' + digits10.slice(6, 8);
+    if (digits10.length > 8) result += '-' + digits10.slice(8, 10);
+    return result;
+  }
+
+  function handlePhoneFocus() {
+    if (!phoneDisplay) {
+      setPhoneDisplay('+7 (');
+      setPhoneError('');
+    }
+  }
+
+  function handlePhoneBlur() {
+    if (!phoneDisplay || phoneDisplay === '+7 (') {
+      setPhoneDisplay('');
+      setPhoneError('empty');
+    } else if (!phoneRaw) {
+      setPhoneError('incomplete');
+    } else {
+      setPhoneError('');
+    }
+  }
+
+  function handlePhoneChange(e) {
+    setPhoneError('');
+    const allDigits = e.target.value.replace(/\D/g, '');
+    if (!allDigits) {
+      setPhoneDisplay('+7 (');
+      setPhoneRaw('');
+      return;
+    }
+    const first = allDigits[0];
+    let digits10;
+    if (first === '7' || first === '8') {
+      digits10 = allDigits.slice(1, 11);
+    } else if (first === '9') {
+      digits10 = allDigits.slice(0, 10);
+    } else {
+      setPhoneDisplay('+7 (');
+      setPhoneRaw('');
+      setPhoneError('Принимаем только российские номера');
+      return;
+    }
+    setPhoneDisplay(formatPhoneDisplay(digits10));
+    setPhoneRaw(digits10.length === 10 ? '+7' + digits10 : '');
   }
 
   function openCountryPicker() {
@@ -134,16 +189,34 @@ function Calculator() {
             <div className="calculator__fieldset">
               <p className="calculator__fieldset-label">Контакты</p>
 
-              <div className="calculator__field">
+              <div className={`calculator__field${phoneError ? ' calculator__field_error' : ''}`}>
                 <img
                   className="calculator__field-flag"
                   src={russiaFlag}
                   alt=""
                 />
                 <div className="calculator__field-text">
-                  <input className="calculator__field-input calculator__field-input_placeholder" id="calc-phone" type="tel" placeholder="Номер телефона" />
+                  {phoneError === 'incomplete' && (
+                    <span className="calculator__field-label">Номер телефона</span>
+                  )}
+                  <input
+                    className="calculator__field-input calculator__field-input_placeholder"
+                    id="calc-phone"
+                    type="tel"
+                    placeholder="Номер телефона"
+                    value={phoneDisplay}
+                    onChange={handlePhoneChange}
+                    onFocus={handlePhoneFocus}
+                    onBlur={handlePhoneBlur}
+                  />
                 </div>
               </div>
+              {phoneError === 'empty' && (
+                <p className="calculator__phone-error">Введите номер телефона</p>
+              )}
+              {phoneError === 'incomplete' && (
+                <p className="calculator__phone-error">Некорректный формат номера телефона</p>
+              )}
             </div>
 
             <p className="calculator__disclaimer">

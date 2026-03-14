@@ -117,6 +117,20 @@
   justify-content: space-between;
 }
 
+.calculator__field_error {
+  background: #FFF0F0;
+  outline: 1px solid #FE0801;
+}
+
+.calculator__phone-error {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #FE0801;
+}
+
 .calculator__field-flag {
   width: 24px;
   height: 24px;
