@@ -72,6 +72,20 @@
   color: #9F9993;
 }
 
+.cta__input_error {
+  outline: 1px solid #FE0801;
+  background: #FFF0F0;
+}
+
+.cta__error {
+  margin: 0;
+  font-family: 'Inter Display', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #FE0801;
+}
+
 .cta__btn {
   display: inline-flex;
   align-items: center;
