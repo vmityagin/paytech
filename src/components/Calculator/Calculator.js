@@ -26,6 +26,7 @@ function Calculator() {
   const [activeTab, setActiveTab] = useState('pay');
   const [countryPickerOpen, setCountryPickerOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
+  const [amountRaw, setAmountRaw] = useState('10000');
 
   useEffect(() => {
     if (countryPickerOpen) {
@@ -37,6 +38,16 @@ function Calculator() {
       document.body.style.overflow = '';
     };
   }, [countryPickerOpen]);
+
+  function formatAmount(raw) {
+    if (!raw) return '';
+    return raw.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+  }
+
+  function handleAmountChange(e) {
+    const digits = e.target.value.replace(/\D/g, '');
+    setAmountRaw(digits);
+  }
 
   function openCountryPicker() {
     setCountryPickerOpen(true);
@@ -108,7 +119,14 @@ function Calculator() {
               <div className="calculator__field">
                 <div className="calculator__field-text">
                   <label className="calculator__field-label" htmlFor="calc-amount">Сумма перевода, {selectedCountry.currency}</label>
-                  <input className="calculator__field-input" id="calc-amount" type="text" defaultValue="10 000" />
+                  <input
+                    className="calculator__field-input"
+                    id="calc-amount"
+                    type="text"
+                    inputMode="numeric"
+                    value={formatAmount(amountRaw)}
+                    onChange={handleAmountChange}
+                  />
                 </div>
               </div>
             </div>
@@ -141,7 +159,7 @@ function Calculator() {
             <ul className="calculator__panel-rows">
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">Платёж в валюте</span>
-                <span className="calculator__panel-row-value">10 000 {selectedCountry.currency}</span>
+                <span className="calculator__panel-row-value">{formatAmount(amountRaw)} {selectedCountry.currency}</span>
               </li>
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">
