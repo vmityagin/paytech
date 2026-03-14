@@ -4,6 +4,7 @@ import russiaFlag from '../../images/russia.svg';
 import infoIcon from '../../images/features__item-hint.svg';
 import Tooltip from '../Tooltip/Tooltip';
 import { COUNTRIES, TOOLTIPS, CBR_RATE, BANK_MARKUP, COMMISSION_RATE } from '../../utils/constants';
+import { buildPayload, submitToSheets } from '../../utils/api';
 
 function Calculator() {
   const [activeTab, setActiveTab] = useState('pay');
@@ -14,6 +15,7 @@ function Calculator() {
   const [phoneDisplay, setPhoneDisplay] = useState('');
   const [phoneRaw, setPhoneRaw] = useState('');
   const [phoneError, setPhoneError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (countryPickerOpen) {
@@ -108,7 +110,7 @@ function Calculator() {
     setCountryPickerOpen(false);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     let valid = true;
     if (!amountRaw) { setAmountError(true); valid = false; }
@@ -116,7 +118,25 @@ function Calculator() {
       setPhoneError(!phoneDisplay || phoneDisplay === '+7 (' ? 'empty' : 'incomplete');
       valid = false;
     }
-    if (valid) window.location.reload();
+    if (!valid) return;
+    setIsSubmitting(true);
+    try {
+      await submitToSheets(buildPayload({
+        type: activeTab,
+        country: selectedCountry.name,
+        currency: selectedCountry.currency,
+        amount: amountRaw,
+        phone: phoneRaw,
+        amountRub: paymentRub,
+        commission,
+        total,
+      }));
+      setAmountRaw('10000');
+      setPhoneDisplay('');
+      setPhoneRaw('');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const amount = parseFloat(amountRaw) || 0;
@@ -280,8 +300,8 @@ function Calculator() {
               <span className="calculator__panel-total-value">от {formatAmount(String(total))} ₽</span>
             </div>
 
-            <button className="calculator__submit" type="submit" disabled={!amountRaw || !phoneRaw}>
-              Оставить заявку
+            <button className="calculator__submit" type="submit" disabled={!amountRaw || !phoneRaw || isSubmitting}>
+              {isSubmitting ? <span className="calculator__spinner" /> : 'Оставить заявку'}
             </button>
           </div>
 

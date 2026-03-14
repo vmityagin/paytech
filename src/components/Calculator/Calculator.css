@@ -347,6 +347,20 @@
   cursor: default;
 }
 
+.calculator__spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: calculator-spin 0.7s linear infinite;
+}
+
+@keyframes calculator-spin {
+  to { transform: rotate(360deg); }
+}
+
 @media (max-width: 900px) {
   .calculator {
     padding: 0 12px 32px;
