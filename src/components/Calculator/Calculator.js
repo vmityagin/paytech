@@ -125,6 +125,15 @@ function Calculator() {
     setCountryPickerOpen(false);
   }
 
+  const CBR_RATE = parseFloat(process.env.REACT_APP_CBR_RATE);
+  const BANK_MARKUP = parseFloat(process.env.REACT_APP_BANK_MARKUP);
+  const COMMISSION_RATE = parseFloat(process.env.REACT_APP_COMMISSION_RATE);
+
+  const amount = parseFloat(amountRaw) || 0;
+  const paymentRub = Math.round(amount * CBR_RATE * BANK_MARKUP);
+  const commission = Math.round(paymentRub * COMMISSION_RATE);
+  const total = paymentRub + commission;
+
   return (
     <section className="calculator">
       <div className="calculator__inner">
@@ -244,7 +253,7 @@ function Calculator() {
             <ul className="calculator__panel-rows">
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">Платёж в валюте</span>
-                <span className="calculator__panel-row-value">{formatAmount(amountRaw)} {selectedCountry.currency}</span>
+                <span className="calculator__panel-row-value">{amountRaw ? formatAmount(amountRaw) : '0'} {selectedCountry.currency}</span>
               </li>
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">
@@ -255,11 +264,11 @@ function Calculator() {
                     alt="Подробнее"
                   />
                 </span>
-                <span className="calculator__panel-row-value">114 600 ₽</span>
+                <span className="calculator__panel-row-value">{formatAmount(String(paymentRub))} ₽</span>
               </li>
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">Комиссия от 0,5%</span>
-                <span className="calculator__panel-row-value">5 730 ₽</span>
+                <span className="calculator__panel-row-value">{formatAmount(String(commission))} ₽</span>
               </li>
             </ul>
 
@@ -274,7 +283,7 @@ function Calculator() {
                   alt="Подробнее"
                 />
               </span>
-              <span className="calculator__panel-total-value">от 120 330 ₽</span>
+              <span className="calculator__panel-total-value">от {formatAmount(String(total))} ₽</span>
             </div>
 
             <button className="calculator__submit" type="button">
