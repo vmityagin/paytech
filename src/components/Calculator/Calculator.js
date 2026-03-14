@@ -27,6 +27,7 @@ function Calculator() {
   const [countryPickerOpen, setCountryPickerOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
   const [amountRaw, setAmountRaw] = useState('10000');
+  const [amountError, setAmountError] = useState(false);
   const [phoneDisplay, setPhoneDisplay] = useState('');
   const [phoneRaw, setPhoneRaw] = useState('');
   const [phoneError, setPhoneError] = useState('');
@@ -50,6 +51,13 @@ function Calculator() {
   function handleAmountChange(e) {
     const digits = e.target.value.replace(/\D/g, '');
     setAmountRaw(digits);
+    setAmountError(false);
+  }
+
+  function handleAmountBlur() {
+    if (!amountRaw) {
+      setAmountError(true);
+    }
   }
 
   function formatPhoneDisplay(digits10) {
@@ -171,7 +179,7 @@ function Calculator() {
                 <span className="calculator__field-chevron" aria-hidden="true"></span>
               </div>
 
-              <div className="calculator__field">
+              <div className={`calculator__field${amountError ? ' calculator__field_error' : ''}`}>
                 <div className="calculator__field-text">
                   <label className="calculator__field-label" htmlFor="calc-amount">Сумма перевода, {selectedCountry.currency}</label>
                   <input
@@ -181,9 +189,13 @@ function Calculator() {
                     inputMode="numeric"
                     value={formatAmount(amountRaw)}
                     onChange={handleAmountChange}
+                    onBlur={handleAmountBlur}
                   />
                 </div>
               </div>
+              {amountError && (
+                <p className="calculator__phone-error">Введите сумму перевода</p>
+              )}
             </div>
 
             <div className="calculator__fieldset">
