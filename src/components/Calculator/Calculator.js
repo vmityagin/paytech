@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Calculator.css';
 import chinaFlag from '../../images/china 2.svg';
 import russiaFlag from '../../images/russia.svg';
 import infoIcon from '../../images/features__item-hint.svg';
 
 function Calculator() {
+  const [activeTab, setActiveTab] = useState('pay');
+
   return (
     <section className="calculator">
       <div className="calculator__inner">
@@ -18,13 +20,21 @@ function Calculator() {
           <div className="calculator__form">
 
             <div className="calculator__tabs">
-              <button className="calculator__tab calculator__tab_active" type="button">
+              <button
+                className={`calculator__tab${activeTab === 'pay' ? ' calculator__tab_active' : ''}`}
+                type="button"
+                onClick={() => setActiveTab('pay')}
+              >
                 <span className="calculator__tab-title">Оплатить поставщику</span>
                 <span className="calculator__tab-desc">
                   Перевести деньги из России в другую страну
                 </span>
               </button>
-              <button className="calculator__tab" type="button">
+              <button
+                className={`calculator__tab${activeTab === 'receive' ? ' calculator__tab_active' : ''}`}
+                type="button"
+                onClick={() => setActiveTab('receive')}
+              >
                 <span className="calculator__tab-title">Получить перевод</span>
                 <span className="calculator__tab-desc">
                   Получить деньги из другой страны на свой счёт
@@ -42,7 +52,7 @@ function Calculator() {
                   alt=""
                 />
                 <div className="calculator__field-text">
-                  <span className="calculator__field-label">Куда</span>
+                  <span className="calculator__field-label">{activeTab === 'pay' ? 'Куда' : 'Откуда'}</span>
                   <span className="calculator__field-value">Китай</span>
                 </div>
                 <span className="calculator__field-chevron" aria-hidden="true"></span>
