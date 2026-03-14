@@ -3,6 +3,8 @@ import './Calculator.css';
 import chinaFlag from '../../images/china 2.svg';
 import russiaFlag from '../../images/russia.svg';
 import infoIcon from '../../images/features__item-hint.svg';
+import Tooltip from '../Tooltip/Tooltip';
+import TOOLTIPS from '../Tooltip/tooltips';
 import brazilFlag from '../../images/brazil.svg';
 import kazakhstanFlag from '../../images/kazakhstan.svg';
 import armeniaFlag from '../../images/armenia.svg';
@@ -258,11 +260,13 @@ function Calculator() {
               <li className="calculator__panel-row">
                 <span className="calculator__panel-row-label">
                   Платёж в рублях
-                  <img
-                    className="calculator__panel-row-hint"
-                    src={infoIcon}
-                    alt="Подробнее"
-                  />
+                  <Tooltip text={TOOLTIPS.calcPaymentRub}>
+                    <img
+                      className="calculator__panel-row-hint"
+                      src={infoIcon}
+                      alt="Подробнее"
+                    />
+                  </Tooltip>
                 </span>
                 <span className="calculator__panel-row-value">{formatAmount(String(paymentRub))} ₽</span>
               </li>
@@ -277,11 +281,13 @@ function Calculator() {
             <div className="calculator__panel-total">
               <span className="calculator__panel-total-label">
                 Итоговая стоимость
-                <img
-                  className="calculator__panel-total-hint"
-                  src={infoIcon}
-                  alt="Подробнее"
-                />
+                <Tooltip text={TOOLTIPS.calcTotal}>
+                  <img
+                    className="calculator__panel-total-hint"
+                    src={infoIcon}
+                    alt="Подробнее"
+                  />
+                </Tooltip>
               </span>
               <span className="calculator__panel-total-value">от {formatAmount(String(total))} ₽</span>
             </div>

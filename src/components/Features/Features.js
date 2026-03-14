@@ -5,6 +5,8 @@ import verifiedUserIcon from '../../images/verified_user.png';
 import percentDiscountIcon from '../../images/percent_discount.png';
 import acuteIcon from '../../images/acute.png';
 import hintIcon from '../../images/features__item-hint.svg';
+import Tooltip from '../Tooltip/Tooltip';
+import TOOLTIPS from '../Tooltip/tooltips';
 
 function Features() {
   return (
@@ -37,7 +39,9 @@ function Features() {
               <img className="features__item-icon" src={percentDiscountIcon} alt="" />
               <h3 className="features__item-title">
                 Комиссия от 0,5%<br />за перевод
-                <img className="features__item-hint" src={hintIcon} alt="Подробнее" />
+                <Tooltip text={TOOLTIPS.featuresCommission}>
+                  <img className="features__item-hint" src={hintIcon} alt="Подробнее" />
+                </Tooltip>
               </h3>
             </div>
             <p className="features__item-desc">
